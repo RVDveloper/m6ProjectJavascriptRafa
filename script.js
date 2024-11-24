@@ -66,6 +66,13 @@ function crearTarjetas(filosofos) {
         let habilidades = document.createElement('div');
         habilidades.classList.add('skills');
         info.append(habilidades);
+
+        let botonEliminar = document.createElement('div');
+        botonEliminar.innerHTML = '&#x2716'; 
+        botonEliminar.classList.add('botonEliminar');
+        botonEliminar.addEventListener('click', () => eliminarTarjeta(tarjeta));
+        tarjeta.append(botonEliminar);
+
         // Añadimos una a una las habilidades
         for (let infoHabilidad of filosofo.habilidades) {
             // Añadimos una caja de habilidad
@@ -107,7 +114,8 @@ function crearTarjetas(filosofos) {
     })
 }
 
-function eliminarTarjeta() {
+function eliminarTarjeta(tarjeta) {
+    tarjeta.remove();
 }
 
 function ordenarNombreAZ() {
