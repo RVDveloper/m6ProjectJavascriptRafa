@@ -144,10 +144,23 @@ function ordenarNombreAZ() {
 
     // Afegir 'tarjetasOrdenadas' al contenidor de cards
     let contenedor = document.querySelector('.cards-container');
+    contenedor.innerHTML = "";
     // Completar codi
+    tarjetasOrdenadas.forEach(tarjeta => contenedor.append(tarjeta));
 }
 
 function ordenarNombreZA() {
+        let tarjetas = Array.from(document.querySelectorAll('.card'));
+        let tarjetasOrdenadas = tarjetas.sort((tarjetaA, tarjetaB) => {
+            let nombre1 = tarjetaA.querySelector('h3').innerHTML;
+            let nombre2 = tarjetaB.querySelector('h3').innerHTML;
+            return nombre2.localeCompare(nombre1);
+        });
+
+        let contenedor = document.querySelector('.cards-container');
+        contenedor.innerHTML = "";
+
+        tarjetasOrdenadas.forEach(tarjeta => contenedor.append(tarjeta));
 }
 
 const HabilidadesNombre = ["Sabiduria","Oratoria","Lógica","Innovación"]
