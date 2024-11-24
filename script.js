@@ -200,11 +200,21 @@ function parsearTarjetas(tarjetas){
         filosofo.imagen = tarjeta.querySelector('.photo').src;
         filosofo.pais = {};
         // Completar funció
-        
+        filosofo.pais.nombre = tarjeta.querySelector('.info-pais .pais').innerText.trim();
+        filosofo.pais.bandera = tarjeta.querySelector('.info-pais img').src;
+
+        filosofo.corriente = tarjeta.querySelector('.corriente').innerHTML;
+        filosofo.arma = tarjeta.querySelector('.arma').innerHTML;
+
+        filosofo.habilidades = [];
         let habilidades = tarjeta.querySelectorAll('.skill');
         for (let habilidad of habilidades){
             let habilidadParaGuardar = {};
             // Completar funció
+            habilidadParaGuardar.habilidad = habilidad.querySelector('.skill-name').innerHTML;
+            habilidadParaGuardar.nivel = parseInt(habilidad.querySelector('.level').style.width) / 20;
+
+            filosofo.habilidades.push(habilidadParaGuardar);
         }
         filosofosParseados.push(filosofo);
     }
@@ -218,6 +228,11 @@ function guardarTarjetas(){
 
 
 function cargarTarjetas() {
+    let tarjetasGuardadas = localStorage.getItem('tarjetas');
+    if (tarjetasGuardadas) {
+        let filosofosGuardados = JSON.parse(tarjetasGuardadas);
+        crearTarjetas(filosofosGuardados);
+    }
 }
 
 const filosofos = [
